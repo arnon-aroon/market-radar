@@ -1,0 +1,29 @@
+name: Update macro releases (BLS)
+on:
+  schedule:
+    # 15:00 UTC is 22:00 Asia/Bangkok; after standard US 8:30am ET releases.
+    - cron: '0 15 * * 1-5'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Refresh BLS release results
+        run: python sync_bls.py
+      - name: Commit changes only when new data is published
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add auto_data.json
+          if ! git diff --staged --quiet; then
+            git commit -m "data: update BLS macro release actuals"
+            git push
+          fi

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0a101e" />
+  <meta name="description" content="Market Radar — ปฏิทินอีเวนต์ US Stocks & BTC เข้าใจง่าย ครบทั้ง Fed, CPI, งบหุ้น และผลต่อการลงทุน" />
+  <meta property="og:title" content="Market Radar — US Stocks & BTC" />
+  <meta property="og:description" content="ติดตามอีเวนต์ที่ขยับตลาด พร้อมผลดี ผลเสีย และเวลาไทย" />
+  <link rel="icon" href="icon.svg" type="image/svg+xml" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Market Radar | US Stocks & BTC Events</title>
+</head>
+<body>
+  <div class="app-shell" id="appShell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#top" aria-label="Market Radar home">
+        <span class="brand-icon"><svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true"><circle cx="15" cy="15" r="11.5" stroke="currentColor" stroke-opacity=".65"/><circle cx="15" cy="15" r="6.2" stroke="currentColor" stroke-opacity=".48"/><path d="M15 15 24.6 7.4" stroke="#58e6bc" stroke-width="2.6" stroke-linecap="round"/><circle cx="15" cy="15" r="2.9" fill="#58e6bc"/></svg></span>
+        <span><strong>market<span>radar</span></strong><small>YOUR EDGE. SIMPLIFIED.</small></span>
+      </a>
+      <div class="side-label">WORKSPACE</div>
+      <nav class="side-nav" aria-label="เมนูหลัก">
+        <button class="side-link active" data-nav="dashboard"><span class="nav-ico">◈</span><span>ภาพรวมตลาด</span></button>
+        <button class="side-link" data-nav="calendar"><span class="nav-ico">▦</span><span>ปฏิทินอีเวนต์</span></button>
+        <button class="side-link" data-nav="saved"><span class="nav-ico">☆</span><span>บันทึกของฉัน</span><span class="side-count" id="navSavedCount">0</span></button>
+      </nav>
+      <div class="side-label side-space">QUICK FILTER</div>
+      <nav class="side-nav" id="sidebarFilters" aria-label="ประเภทอีเวนต์">
+        <button class="side-link" data-category="fed"><span class="nav-dot" style="--c:#bca5ff"></span> Fed / ดอกเบี้ย</button>
+        <button class="side-link" data-category="inflation"><span class="nav-dot" style="--c:#ffbd79"></span> เงินเฟ้อ CPI/PCE</button>
+        <button class="side-link" data-category="earnings"><span class="nav-dot" style="--c:#6caeff"></span> งบหุ้น AI / Tech</button>
+        <button class="side-link" data-category="jobs"><span class="nav-dot" style="--c:#f991c6"></span> การจ้างงาน</button>
+        <button class="side-link" data-category="policy"><span class="nav-dot" style="--c:#9adf83"></span> นโยบาย/การเมือง</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="side-info"><div class="side-info-top"><span class="pulse"></span> DATA EDITION</div><strong>Q4 2026</strong><span>ตรวจปฏิทิน ณ 22 ต.ค. 2026</span></div>
+        <div class="side-user"><span class="avatar">MR</span><div><strong>Personal workspace</strong><small>เวลาไทย · GMT+7</small></div><span class="chev">⌄</span></div>
+      </div>
+    </aside>
+    <div class="mobile-shade" id="mobileShade"></div>
+    <div class="main-wrap" id="top">
+      <header class="topbar">
+        <div class="top-left"><button class="menu-button" id="menuButton" aria-label="เปิดเมนู">☰</button><div class="crumb">WORKSPACE <span>/</span> <strong>EVENT INTELLIGENCE</strong></div></div>
+        <div class="top-actions"><span class="top-bangkok"><span class="dot-on"></span><span id="thaiNow">BANGKOK · GMT+7</span></span><button id="installBtn" class="icon-button install-top" hidden title="ติดตั้งเว็บบนเครื่อง">⬇ <span>ติดตั้ง</span></button><button id="exportTop" class="icon-button" title="ส่งออกปฏิทิน .ics">⇩</button><button id="helpBtn" class="icon-button" title="วิธีใช้งาน">?</button></div>
+      </header>
+      <main class="main-content">
+        <div class="heading-row"><div><div class="eyebrow"><span class="eyebrow-line"></span> THE MARKET, DECODED.</div><h1>รู้ก่อนตลาดขยับ<span class="h1period">.</span></h1><p class="lead">ทุกอีเวนต์สำคัญของหุ้นสหรัฐฯ และ BTC — อธิบายเป็นภาษาคน ไม่ต้องเปิดสิบแท็บ</p></div><div class="heading-badge"><span>●</span> Q4 MARKET WATCH <small>OCT — DEC 2026</small></div></div>
+        <div class="hero-grid">
+          <section class="next-event-card" id="nextEventCard" aria-label="อีเวนต์ถัดไป">
+            <div class="next-event-top"><span class="section-mini"><span class="live-pip"></span> NEXT MARKET CATALYST</span><span class="tiny-arrow">↗</span></div>
+            <div id="heroContent"></div>
+          </section>
+          <div class="right-stats"><div class="stat-card"><div class="stat-icon mint">▣</div><div><div class="stat-caption">อีเวนต์ที่เหลือในปี</div><div class="stat-value" id="statRemaining">—</div></div><span class="stat-bottom">TRACKED EVENTS</span></div><div class="stat-card"><div class="stat-icon coral">⚡</div><div><div class="stat-caption">High-impact ใน 14 วัน</div><div class="stat-value" id="statHigh">—</div></div><span class="stat-bottom">WATCH CLOSELY</span></div><div class="stat-card"><div class="stat-icon purple">☆</div><div><div class="stat-caption">รายการที่บันทึก</div><div class="stat-value" id="statSaved">0</div></div><span class="stat-bottom">YOUR WATCHLIST</span></div></div>
+        </div>
+        <section class="auto-update-panel" aria-label="สถานะอัปเดตข้อมูลเศรษฐกิจ">
+          <div><span class="auto-live-dot"></span><strong>ผลเศรษฐกิจอัตโนมัติ</strong><span id="autoUpdateStatus">BLS · กำลังตรวจสอบข้อมูลล่าสุด</span></div>
+          <p>ผลจริง CPI และ Nonfarm Payrolls จะปรากฏหลัง BLS เผยแพร่และระบบซิงก์สำเร็จ · Consensus / งบหุ้นยังต้องตรวจสอบแยก</p>
+        </section>
+        <div class="content-grid">
+          <section class="feed-panel">
+            <div class="panel-head"><div><div class="panel-overline">THE EVENT FEED</div><h2>ปฏิทินขยับตลาด <span class="heading-count" id="listCount">0</span></h2></div><div class="segmented" aria-label="เลือกมุมมอง"><button class="seg active" data-view="timeline">≡ <span>Timeline</span></button><button class="seg" data-view="calendar">▦ <span>Calendar</span></button></div></div>
+            <div class="filters-bar"><div class="search-wrap"><span class="search-icon">⌕</span><input id="searchInput" type="search" placeholder="ค้นหา Fed, CPI, NVDA, BTC..." aria-label="ค้นหาอีเวนต์" /><kbd>/</kbd></div><select id="monthFilter" aria-label="เลือกเดือน"><option value="all">ทุกเดือน</option><option value="10">ตุลาคม</option><option value="11">พฤศจิกายน</option><option value="12">ธันวาคม</option></select><button class="filter-toggle" id="highOnly" title="แสดงเฉพาะอีเวนต์ความสำคัญสูง">⚡ <span>High impact</span></button></div>
+            <div class="category-pills" id="categoryPills" aria-label="ตัวกรองประเภท"></div>
+            <div class="feed-toolbar"><span id="feedMeta">กำลังโหลด...</span><label class="switchline"><input type="checkbox" id="hidePast" /><span>ซ่อนอีเวนต์ที่ผ่านมา</span></label></div>
+            <div id="timelineView" class="timeline-view"></div>
+            <div id="calendarView" class="calendar-view" hidden></div>
+            <div class="feed-footer"><span>ข้อมูลเป็นปฏิทินประกอบการวางแผน ไม่ใช่คำแนะนำการลงทุน</span><a href="#sources" id="sourcesJump">ดูแหล่งข้อมูล ↗</a></div>
+          </section>
+          <aside class="insights-column">
+            <section class="side-panel calendar-mini-panel"><div class="small-panel-head"><div><div class="panel-overline">AT A GLANCE</div><h3>ปฏิทินรายเดือน</h3></div><div class="mini-month-actions"><button id="miniPrev" title="เดือนก่อน">‹</button><span id="miniMonthName"></span><button id="miniNext" title="เดือนถัดไป">›</button></div></div><div class="mini-calendar" id="miniCalendar"></div><div class="calendar-legend"><span><i class="legend-high"></i> สูงมาก</span><span><i class="legend-other"></i> อีเวนต์อื่น</span></div></section>
+            <section class="side-panel playbook-panel"><div class="panel-overline">YOUR INVESTOR CHEAT SHEET</div><h3>อ่านผลข่าวยังไง? <span>✦</span></h3><p class="playbook-sub">ไม่ใช่แค่ดูว่าตัวเลขสูงหรือต่ำ แต่ต้องเทียบกับสิ่งที่ตลาดคาดไว้</p><div class="rule-card"><div class="rule-icon good">↗</div><div><strong>เงินเฟ้อต่ำกว่าคาด</strong><span>Yield มีโอกาสลง → QQQ / BTC มักได้แรงหนุน</span></div></div><div class="rule-card"><div class="rule-icon bad">↘</div><div><strong>เงินเฟ้อสูงกว่าคาด</strong><span>Yield อาจขึ้น → หุ้น Growth เสี่ยงถูกขาย</span></div></div><div class="rule-card"><div class="rule-icon blue">◎</div><div><strong>งบหุ้นต้องดู Guidance</strong><span>งบดีแต่คาดการณ์แย่ หุ้นก็อาจร่วงได้</span></div></div><div class="playbook-foot">* ตลาดอาจตอบสนองไม่ตามทฤษฎี เพราะราคาสะท้อนความคาดหวังไว้ก่อนแล้ว</div></section>
+            <section class="side-panel watch-panel"><div class="panel-overline">FOCUSED ON WHAT MATTERS</div><h3>ติดตามตามสินทรัพย์</h3><p>กดเพื่อดูเฉพาะอีเวนต์ที่เกี่ยวข้อง</p><div class="ticker-list" id="tickerList"></div></section>
+            <section class="side-panel source-panel" id="sources"><div class="panel-overline">TRANSPARENCY FIRST</div><h3>แหล่งข้อมูล & สถานะ</h3><p>ตารางประกาศจากหน่วยงานทางการและ Investor Relations ส่วนวันที่ยังไม่ยืนยันจะแสดงป้ายเตือน</p><div class="source-links"><a href="https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm" target="_blank" rel="noopener noreferrer">Federal Reserve ↗</a><a href="https://www.bls.gov/schedule/2026/home.htm" target="_blank" rel="noopener noreferrer">BLS ↗</a><a href="https://www.bea.gov/news/schedule" target="_blank" rel="noopener noreferrer">BEA ↗</a><a href="https://www.census.gov/retail/release_schedule.html" target="_blank" rel="noopener noreferrer">US Census ↗</a></div><div class="verified-date"><span class="pulse"></span> ตรวจรายการครั้งล่าสุด 22 ต.ค. 2026</div></section>
+          </aside>
+        </div>
+        <footer class="global-footer"><strong>market<span>radar</span></strong><span>Built for clarity, not noise. • GMT+7 Bangkok</span><span>Q4 2026 Personal Edition · v1.0</span></footer>
+      </main>
+    </div>
+  </div>
+  <div id="detailOverlay" class="detail-overlay" hidden><div class="detail-backdrop" id="detailBackdrop"></div><section class="detail-drawer" role="dialog" aria-modal="true" aria-label="รายละเอียดอีเวนต์" id="detailDrawer"><div class="drawer-top"><span class="drawer-kicker"><span class="live-pip"></span> EVENT INTELLIGENCE</span><button class="drawer-close" id="detailClose" aria-label="ปิดรายละเอียด">✕</button></div><div id="detailContent"></div></section></div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="data.js"></script><script src="app.js"></script>
+</body>
+</html>
