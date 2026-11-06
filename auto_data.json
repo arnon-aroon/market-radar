@@ -1,6 +1,13 @@
 {
   "source": "U.S. Bureau of Labor Statistics",
-  "updated_at": null,
-  "events": {},
-  "note": "Automatic BLS actuals only. No live consensus or stock prices."
+  "updated_at": "2026-11-06T20:41:26+00:00",
+  "events": {
+    "nfp-oct": {
+      "actual": "Nonfarm Payrolls +165K · ว่างงาน 4.1%",
+      "period": "2026-10",
+      "source": "https://www.bls.gov/news.release/empsit.toc.htm",
+      "sourceName": "BLS (seasonally adjusted; payroll MoM)"
+    }
+  },
+  "note": "Actuals from BLS monthly observations. CPI YoY and payroll MoM are calculated; series may be revised. Forecast/consensus not provided."
 }
